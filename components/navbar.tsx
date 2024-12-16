@@ -49,7 +49,7 @@ export const NextUINavbar = () => {
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
-              className="text-purple-600"
+              className="text-purple-600 text-4xl mx-8 my-2"
               href={item.toLocaleLowerCase()}
               onClick={() => setIsMenuOpen(false)}
             >
@@ -60,8 +60,8 @@ export const NextUINavbar = () => {
       </NavbarMenu>
 
       {/*For others screen*/}
-      <NavbarContent className="hidden sm:flex" justify="center">
-        <NavbarBrand className="text-purple-600 mr-16 size-22">
+      <NavbarContent className="hidden sm:flex size-30" justify="center">
+        <NavbarBrand className="text-purple-600 mr-16 size-30 text-lg">
           <AcmeLogo />
           <p className="font-bold text-inherit">ACME</p>
         </NavbarBrand>
@@ -69,7 +69,7 @@ export const NextUINavbar = () => {
       <NavbarContent className="hidden sm:flex" justify="center">
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
-            <Link className="text-purple-600" href={item.toLocaleLowerCase()}>
+            <Link className="text-purple-600 text-lg" href={item.toLocaleLowerCase()}>
               {item}
             </Link>
           </NavbarMenuItem>
@@ -77,7 +77,7 @@ export const NextUINavbar = () => {
       </NavbarContent>
       <NavbarContent className="hidden sm:flex" justify="center">
         <NavbarItem className="lg:flex">
-          <Link className="text-purple-600" href="login">
+          <Link className="text-purple-600 text-xl" href="login">
             Login
           </Link>
         </NavbarItem>

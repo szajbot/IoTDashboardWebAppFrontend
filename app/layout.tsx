@@ -34,7 +34,7 @@ export default function RootLayout({
             <Link
               isExternal
               className="flex items-center gap-1 text-current"
-              href="https://placehold.co/600x400"
+              href="https://github.com/szajbot"
               title="szajbot github"
             >
               <span className="text-default-600">Powered by</span>
