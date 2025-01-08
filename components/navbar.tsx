@@ -11,6 +11,7 @@ import {
   Link,
   NavbarBrand,
 } from "@nextui-org/react";
+import {commonColors, semanticColors} from "@nextui-org/theme";
 
 import { AcmeLogo } from "@/app/AcmeLogo";
 
@@ -39,7 +40,7 @@ export const NextUINavbar = () => {
           <p className="font-bold text-inherit">ACME</p>
         </NavbarBrand>
         <NavbarItem className="lg:flex">
-          <Link className="text-purple-600" href="#">
+          <Link className="text-purple-600 text-xl" href="#">
             Login
           </Link>
         </NavbarItem>

@@ -8,6 +8,7 @@ import { Link } from "@nextui-org/react";
 
 import { fontSans } from "@/config/fonts";
 import { NextUINavbar } from "@/components/navbar";
+import { Providers } from "@/app/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,23 +26,25 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        <div className="relative flex flex-col h-screen">
-          <NextUINavbar />
-          <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
-            {children}
-          </main>
-          <footer className="w-full flex items-center justify-center py-3">
-            <Link
-              isExternal
-              className="flex items-center gap-1 text-current"
-              href="https://github.com/szajbot"
-              title="szajbot github"
-            >
-              <span className="text-default-600">Powered by</span>
-              <p className="text-primary">Szajbot</p>
-            </Link>
-          </footer>
-        </div>
+        <Providers themeProps={{ attribute: "class", defaultTheme: "dark2" }}>
+          <div className="relative flex flex-col h-screen">
+            <NextUINavbar />
+            <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
+              {children}
+            </main>
+            <footer className="w-full flex items-center justify-center py-3">
+              <Link
+                isExternal
+                className="flex items-center gap-1 text-current"
+                href="https://github.com/szajbot"
+                title="szajbot github"
+              >
+                <span className="text-default-600">Powered by</span>
+                <p className="text-primary">Szajbot</p>
+              </Link>
+            </footer>
+          </div>
+        </Providers>
       </body>
     </html>
   );
