@@ -29,7 +29,7 @@ export default {
           divider:"#000000",
           overlay:"#00e835",
           focus: "#00e835",
-          content1: "#00e835",
+          content1: "#660061",
           content2: "#00e835",
         },
       }

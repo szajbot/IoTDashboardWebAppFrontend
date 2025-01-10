@@ -23,7 +23,7 @@ export const NextUINavbar = () => {
   return (
     <Navbar
       isBordered
-      className="bg-gray-800"
+      className="bg-gray-900"
       height="5.5rem"
       isMenuOpen={isMenuOpen}
       maxWidth="full"
