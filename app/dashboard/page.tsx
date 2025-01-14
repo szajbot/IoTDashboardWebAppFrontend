@@ -2,7 +2,6 @@
 
 import { title } from "@/components/primitives";
 import { ResponsiveLine } from '@nivo/line'
-import { ResponsiveBar } from '@nivo/bar';
 import {Avatar, Card, CardHeader, CardBody, CardFooter, Select, SelectSection, SelectItem} from "@nextui-org/react";
 
 export const devices = [
@@ -12,21 +11,123 @@ export const devices = [
   {key: "key4", label: "Cos tam"},
 ];
 
-const BarChart = ({ data }) => {
-  return (
-    <div style={{ height: '400px' }}>
-      <ResponsiveBar
-        data={data}
-      />
-    </div>
-  );
-};
+export const exampleTheme = {
+  "text": {
+    "fontSize": 11,
+    "fill": "#ffffff",
+    "outlineWidth": 0,
+    "outlineColor": "transparent"
+  },
+  "axis": {
+    "domain": {
+      "line": {
+        "stroke": "#ffffff",
+        "strokeWidth": 1
+      }
+    },
+    "legend": {
+      "text": {
+        "fontSize": 12,
+        "fill": "#ffffff",
+        "outlineWidth": 0,
+        "outlineColor": "transparent"
+      }
+    },
+    "ticks": {
+      "line": {
+        "stroke": "#ffffff",
+        "strokeWidth": 1
+      },
+      "text": {
+        "fontSize": 11,
+        "fill": "#ffffff",
+        "outlineWidth": 0,
+        "outlineColor": "transparent"
+      }
+    }
+  },
+  "grid": {
+    "line": {
+      "stroke": "#ffffff",
+      "strokeWidth": 1
+    }
+  },
+  "legends": {
+    "title": {
+      "text": {
+        "fontSize": 11,
+        "fill": "#ffffff",
+        "outlineWidth": 0,
+        "outlineColor": "transparent"
+      }
+    },
+    "text": {
+      "fontSize": 11,
+      "fill": "#ffffff",
+      "outlineWidth": 0,
+      "outlineColor": "transparent"
+    },
+    "ticks": {
+      "line": {},
+      "text": {
+        "fontSize": 10,
+        "fill": "#ffffff",
+        "outlineWidth": 0,
+        "outlineColor": "transparent"
+      }
+    }
+  },
+  "annotations": {
+    "text": {
+      "fontSize": 13,
+      "fill": "#ffffff",
+      "outlineWidth": 2,
+      "outlineColor": "#ffffff",
+      "outlineOpacity": 1
+    },
+    "link": {
+      "stroke": "#000000",
+      "strokeWidth": 1,
+      "outlineWidth": 2,
+      "outlineColor": "#ffffff",
+      "outlineOpacity": 1
+    },
+    "outline": {
+      "stroke": "#000000",
+      "strokeWidth": 2,
+      "outlineWidth": 2,
+      "outlineColor": "#ffffff",
+      "outlineOpacity": 1
+    },
+    "symbol": {
+      "fill": "#000000",
+      "outlineWidth": 2,
+      "outlineColor": "#ffffff",
+      "outlineOpacity": 1
+    }
+  },
+  "tooltip": {
+    "wrapper": {},
+    "container": {
+      "background": "#ffffff",
+      "color": "#333333",
+      "fontSize": 12
+    },
+    "basic": {},
+    "chip": {},
+    "table": {},
+    "tableCell": {},
+    "tableCellValue": {}
+  }
+}
 
 const LineChart = ({ data }) => {
   return (
     <div style={{ height: '400px' }}>
       <ResponsiveLine
         data={data}
+        theme={ exampleTheme
+        }
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
         xScale={{ type: 'point' }}
         xFormat=" >-"
@@ -78,14 +179,15 @@ const LineChart = ({ data }) => {
             itemWidth: 80,
             itemHeight: 20,
             itemOpacity: 0.75,
+            itemTextColor: '#ffffff',
             symbolSize: 12,
             symbolShape: 'circle',
-            symbolBorderColor: 'rgba(0, 0, 0, .5)',
+            symbolBorderColor: 'rgba(100, 100, 100, .9)',
             effects: [
               {
                 on: 'hover',
                 style: {
-                  itemBackground: 'rgba(0, 0, 0, .03)',
+                  itemBackground: 'rgba(100, 100, 100, .03)',
                   itemOpacity: 1
                 }
               }
@@ -113,7 +215,7 @@ const data = [
 export default function DashboardPage() {
   return (
     <div className="w-full">
-      <div className="flex w-full flex-nowrap gap-4">
+      <div className="md:flex w-full flex-nowrap gap-4">
         <Card className="w-full">
           <CardHeader className="justify-between">
             <div className="flex gap-5">
