@@ -7,10 +7,8 @@ import clsx from "clsx";
 import { Link } from "@nextui-org/react";
 
 import { fontSans } from "@/config/fonts";
-import { NextUINavbar } from "@/components/navbar";
-import { Providers } from "@/app/providers";
-
-const inter = Inter({ subsets: ["latin"] });
+import Providers from "@/app/providers";
+import NextUINavbar from "@/components/navbar";
 
 export default function RootLayout({
   children,

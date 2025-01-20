@@ -1,6 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
+import { AcmeLogo } from "@/app/AcmeLogo";
+import { useNavbar } from "@/components/navbarContext";
 import {
   Navbar,
   NavbarMenu,
@@ -9,15 +11,12 @@ import {
   NavbarItem,
   NavbarMenuToggle,
   Link,
-  NavbarBrand,
+  NavbarBrand, Avatar
 } from "@nextui-org/react";
-import {commonColors, semanticColors} from "@nextui-org/theme";
 
-import { AcmeLogo } from "@/app/AcmeLogo";
-
-export const NextUINavbar = () => {
+const NextUINavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
+  const { toggleIsLoggedIn, isLoggedIn } = useNavbar();
   const menuItems = ["Dashboard", "Profile", "System", "Contact"];
 
   return (
@@ -78,11 +77,25 @@ export const NextUINavbar = () => {
       </NavbarContent>
       <NavbarContent className="hidden sm:flex" justify="center">
         <NavbarItem className="lg:flex">
-          <Link className="text-purple-600 text-xl" href="login">
-            Login
-          </Link>
+          {
+            isLoggedIn ? <div className="flex gap-5">
+              <Avatar
+                isBordered
+                radius="full"
+                size="md"
+                src="https://nextui.org/avatars/avatar-1.png"
+              />
+              <h3>You are logged</h3>
+            </div> :
+              <Link className="text-purple-600 text-xl" href="login">
+                Login
+              </Link>
+          }
+
         </NavbarItem>
       </NavbarContent>
     </Navbar>
   );
 };
+
+export default memo(NextUINavbar);
