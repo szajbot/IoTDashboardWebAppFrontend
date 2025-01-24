@@ -9,8 +9,10 @@
 		"lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
 	},
 	"dependencies": {
+		"@heroui/accordion": "^2.2.8",
 		"@heroui/button": "^2.2.10",
 		"@heroui/input": "^2.4.10",
+		"@nextui-org/accordion": "^2.2.7",
 		"@nextui-org/avatar": "^2.2.6",
 		"@nextui-org/button": "2.0.38",
 		"@nextui-org/card": "^2.2.9",

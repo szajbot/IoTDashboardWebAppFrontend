@@ -9,6 +9,14 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        myDarkGrey: "#1a1a1a",
+        myGrey: "#262626",
+        myLightGrey: "#333333",
+        myDarkPurple: "#400080",
+        myPurple: "#6600cc",
+        myLightPurple: "#9933ff",
+      },
       fontFamily: {
         sans: ["var(--font-sans)"],
         mono: ["var(--font-mono)"],
@@ -24,7 +32,7 @@ export default {
         colors: {
           primary: "#00e835",
           DEFAULT: "#000000",
-          background:"#190029",
+          background:"#1a1a1a",
           foreground:"#ffffff",
           divider:"#000000",
           overlay:"#00e835",

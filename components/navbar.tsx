@@ -22,7 +22,7 @@ const NextUINavbar = () => {
   return (
     <Navbar
       isBordered
-      className="bg-gray-900"
+      className="bg-myGrey"
       height="5.5rem"
       isMenuOpen={isMenuOpen}
       maxWidth="full"
@@ -32,14 +32,14 @@ const NextUINavbar = () => {
       <NavbarContent className="sm:hidden ml-4">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="text-purple-600 text-2xl"
+          className="text-myLightPurple text-2xl"
         />
-        <NavbarBrand className="text-purple-600 justify-center">
+        <NavbarBrand className="text-myLightPurple justify-center">
           <AcmeLogo />
           <p className="font-bold text-inherit">ACME</p>
         </NavbarBrand>
         <NavbarItem className="lg:flex">
-          <Link className="text-purple-600 text-xl" href="#">
+          <Link className="text-myLightPurple text-xl" href="#">
             Login
           </Link>
         </NavbarItem>
@@ -49,7 +49,7 @@ const NextUINavbar = () => {
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
-              className="text-purple-600 text-4xl mx-8 my-2"
+              className="text-myLightPurple text-4xl mx-8 my-2"
               href={item.toLocaleLowerCase()}
               onClick={() => setIsMenuOpen(false)}
             >
@@ -61,7 +61,7 @@ const NextUINavbar = () => {
 
       {/*For others screen*/}
       <NavbarContent className="hidden sm:flex size-30" justify="center">
-        <NavbarBrand className="text-purple-600 mr-16 size-30 text-lg">
+        <NavbarBrand className="text-myLightPurple mr-16 size-30 text-lg">
           <AcmeLogo />
           <p className="font-bold text-inherit">ACME</p>
         </NavbarBrand>
@@ -69,7 +69,7 @@ const NextUINavbar = () => {
       <NavbarContent className="hidden sm:flex" justify="center">
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
-            <Link className="text-purple-600 text-lg" href={item.toLocaleLowerCase()}>
+            <Link className="text-myLightPurple text-lg" href={item.toLocaleLowerCase()}>
               {item}
             </Link>
           </NavbarMenuItem>
@@ -87,7 +87,7 @@ const NextUINavbar = () => {
               />
               <h3>You are logged</h3>
             </div> :
-              <Link className="text-purple-600 text-xl" href="login">
+              <Link className="text-myLightPurple text-xl" href="login">
                 Login
               </Link>
           }

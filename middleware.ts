@@ -3,7 +3,7 @@ import { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
   // TODO check authentication
-  let isAuthenticated = false;
+  let isAuthenticated = true;
 
   if (isAuthenticated) {
     return NextResponse.next();
