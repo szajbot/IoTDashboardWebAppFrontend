@@ -4,8 +4,8 @@ export default function SystemLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="w-full text-center justify-center">
+    <section className="w-full h-full">
+      <div className="mt-4 mx-8">
         {children}
       </div>
     </section>
