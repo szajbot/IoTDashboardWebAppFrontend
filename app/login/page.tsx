@@ -5,27 +5,45 @@ import { EyeSlashFilledIcon } from "@heroui/shared-icons";
 import { EyeFilledIcon } from "@heroui/shared-icons";
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
+import axios from "axios";
 import React, { useEffect } from "react";
-import {useNavbar} from "@/components/navbarContext";
+import { useNavbar } from "@/components/navbarContext";
 
 export default function LoginPage() {
   const [isVisible, setIsVisible] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
 
+  const [userPassword, setUserPassword] = React.useState([]);
+  const [userLogin, setUserLogin] = React.useState([]);
+
   const toggleVisibility = () => setIsVisible(!isVisible);
   const { toggleIsLoggedIn, isLoggedIn } = useNavbar();
 
-  function sendLogIn(e) {
-    console.log("State before login: " + isLoggedIn);  // Pokaże poprzedni stan (przed wywołaniem setIsLoggedIn)
+  function handlePasswordChange(event) {
+    setUserPassword(event.target.value);
+  }
 
+  function handleLoginChange(event) {
+    setUserLogin(event.target.value);
+  }
+
+  function sendLogIn(e) {
     setIsLoading(true);
-    // Placeholder for login request
-    setTimeout(() => {
+
+    const body = {
+      login: userLogin,
+      password: userPassword
+    };
+
+    axios.post("http://localhost:8081/api/v1/auth/login", body)
+      .then((res) => {
+        setIsLoading(false);
+        toggleIsLoggedIn();
+        console.log("RESPONSE RECEIVED: ", res);
+      }).catch((err) => {
       setIsLoading(false);
-      console.log("Changing state!");
-      toggleIsLoggedIn();  // Wywołujemy funkcję do zmiany stanu
-      // Nie sprawdzamy stanu od razu, bo jest to asynchroniczne
-    }, 1000);
+      console.log("AXIOS ERROR: ", err);
+    });
   }
 
   return (
@@ -33,11 +51,13 @@ export default function LoginPage() {
       <h2 className={title()}>Please Log In</h2>
       <Input
         className="max-w-xs mt-6"
+        onChange={handlePasswordChange}
         label="Login"
         type="login"
         variant="bordered" />
       <Input
         className="max-w-xs mt-2"
+        onChange={handleLoginChange}
         endContent={
           <button
             aria-label="toggle password visibility"
