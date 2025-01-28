@@ -50,9 +50,12 @@ export default function LoginPage() {
       .then((response) => {
         setIsLoading(false);
         toggleIsLoggedIn(true);
-        console.log(JSON.stringify(response.data));
-        sessionStorage.setItem("access_token", JSON.stringify(response.data.access_token));
-        sessionStorage.setItem("refresh_token", JSON.stringify(response.data.refresh_token));
+        console.log(response.data);
+        var access_token = JSON.stringify(response.data.access_token).replaceAll("\"","")
+        var refresh_token = JSON.stringify(response.data.refresh_token).replaceAll("\"","")
+        sessionStorage.setItem("access_token", access_token);
+        sessionStorage.setItem("refresh_token", refresh_token);
+        sessionStorage.setItem("username", userLogin.toString());
       })
       .catch((error) => {
         setIsLoading(false);
