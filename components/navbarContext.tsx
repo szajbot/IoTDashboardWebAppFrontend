@@ -15,10 +15,9 @@ export const NavbarProvider: React.FC = ({ children }) => {
     }
   }, []);
 
-  const toggleIsLoggedIn = () => {
-    const newLoginStatus = !isLoggedIn;
-    setIsLoggedIn(newLoginStatus);
-    sessionStorage.setItem("isLoggedIn", JSON.stringify(newLoginStatus));  // Persist the state
+  const toggleIsLoggedIn = (state) => {
+    setIsLoggedIn(state);
+    sessionStorage.setItem("isLoggedIn", JSON.stringify(state));  // Persist the state
   };
 
   return (

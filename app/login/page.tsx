@@ -49,7 +49,7 @@ export default function LoginPage() {
     axios.request(config)
       .then((response) => {
         setIsLoading(false);
-        toggleIsLoggedIn();
+        toggleIsLoggedIn(true);
         console.log(JSON.stringify(response.data));
         sessionStorage.setItem("access_token", JSON.stringify(response.data.access_token));
         sessionStorage.setItem("refresh_token", JSON.stringify(response.data.refresh_token));

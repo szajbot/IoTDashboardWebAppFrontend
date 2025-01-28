@@ -39,9 +39,20 @@ const NextUINavbar = () => {
           <p className="font-bold text-inherit">ACME</p>
         </NavbarBrand>
         <NavbarItem className="lg:flex">
-          <Link className="text-myLightPurple text-xl" href="#">
-            Login
-          </Link>
+          {
+            isLoggedIn ? <div className="flex gap-5">
+                <Avatar
+                  isBordered
+                  radius="full"
+                  size="sm"
+                  src="https://nextui.org/avatars/avatar-1.png"
+                />
+                <h3>You are logged</h3>
+              </div> :
+              <Link className="text-myLightPurple text-xl" href="login">
+                Login
+              </Link>
+          }
         </NavbarItem>
       </NavbarContent>
 
