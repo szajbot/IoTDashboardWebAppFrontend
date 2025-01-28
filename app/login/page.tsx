@@ -6,6 +6,7 @@ import { EyeFilledIcon } from "@heroui/shared-icons";
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
 import axios from "axios";
+import qs from "qs";
 import React, { useEffect } from "react";
 import { useNavbar } from "@/components/navbarContext";
 
@@ -17,7 +18,7 @@ export default function LoginPage() {
   const [userLogin, setUserLogin] = React.useState([]);
 
   const toggleVisibility = () => setIsVisible(!isVisible);
-  const { toggleIsLoggedIn, isLoggedIn } = useNavbar();
+  const { isLoggedIn, toggleIsLoggedIn } = useNavbar();
 
   function handlePasswordChange(event) {
     setUserPassword(event.target.value);
@@ -30,20 +31,33 @@ export default function LoginPage() {
   function sendLogIn(e) {
     setIsLoading(true);
 
-    const body = {
-      login: userLogin,
-      password: userPassword
+    let data = qs.stringify({
+      'password': userPassword,
+      'username': userLogin
+    });
+
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: 'http://localhost:8081/api/v1/auth/login',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      data : data
     };
 
-    axios.post("http://localhost:8081/api/v1/auth/login", body)
-      .then((res) => {
+    axios.request(config)
+      .then((response) => {
         setIsLoading(false);
         toggleIsLoggedIn();
-        console.log("RESPONSE RECEIVED: ", res);
-      }).catch((err) => {
-      setIsLoading(false);
-      console.log("AXIOS ERROR: ", err);
-    });
+        console.log(JSON.stringify(response.data));
+        sessionStorage.setItem("access_token", JSON.stringify(response.data.access_token));
+        sessionStorage.setItem("refresh_token", JSON.stringify(response.data.refresh_token));
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        console.log(error);
+      });
   }
 
   return (
