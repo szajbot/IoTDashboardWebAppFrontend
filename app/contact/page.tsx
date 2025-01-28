@@ -38,33 +38,6 @@ export default function ContactPage() {
       });
   }
 
-  function refreshToken(e) {
-    let data = qs.stringify({
-      'refresh_token': sessionStorage.getItem("refresh_token")
-    });
-
-    let config = {
-      method: 'post',
-      maxBodyLength: Infinity,
-      url: 'http://localhost:8081/api/v1/auth/refresh',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      data : data
-    };
-
-    axios.request(config)
-      .then((response) => {
-        toggleIsLoggedIn(true);
-        console.log(JSON.stringify(response.data));
-        sessionStorage.setItem("refresh_token", JSON.stringify(response.data.refresh_token));
-        sessionStorage.setItem("refresh_token", JSON.stringify(response.data.refresh_token));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
   return (
     <div>
       <Button

@@ -2,7 +2,6 @@
 
 import React, { memo } from "react";
 import { AcmeLogo } from "@/app/AcmeLogo";
-import { useNavbar } from "@/components/navbarContext";
 import {
   Navbar,
   NavbarMenu,
@@ -13,10 +12,10 @@ import {
   Link,
   NavbarBrand, Avatar
 } from "@nextui-org/react";
+import { NavbarLoginComponent } from "@/components/helper";
 
 const NextUINavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const { toggleIsLoggedIn, isLoggedIn } = useNavbar();
   const menuItems = ["Dashboard", "Profile", "System", "Contact"];
 
   return (
@@ -39,20 +38,8 @@ const NextUINavbar = () => {
           <p className="font-bold text-inherit">ACME</p>
         </NavbarBrand>
         <NavbarItem className="lg:flex">
-          {
-            isLoggedIn ? <div className="flex gap-5">
-                <Avatar
-                  isBordered
-                  radius="full"
-                  size="sm"
-                  src="https://nextui.org/avatars/avatar-1.png"
-                />
-                <h3>You are logged</h3>
-              </div> :
-              <Link className="text-myLightPurple text-xl" href="login">
-                Login
-              </Link>
-          }
+          <NavbarLoginComponent>
+          </NavbarLoginComponent>
         </NavbarItem>
       </NavbarContent>
 
@@ -88,21 +75,8 @@ const NextUINavbar = () => {
       </NavbarContent>
       <NavbarContent className="hidden sm:flex" justify="center">
         <NavbarItem className="lg:flex">
-          {
-            isLoggedIn ? <div className="flex gap-5">
-              <Avatar
-                isBordered
-                radius="full"
-                size="md"
-                src="https://nextui.org/avatars/avatar-1.png"
-              />
-              <h3>You are logged</h3>
-            </div> :
-              <Link className="text-myLightPurple text-xl" href="login">
-                Login
-              </Link>
-          }
-
+          <NavbarLoginComponent>
+          </NavbarLoginComponent>
         </NavbarItem>
       </NavbarContent>
     </Navbar>
