@@ -1,8 +1,8 @@
 "use client";
 
-import { Avatar, Card, CardBody, CardHeader, Select, SelectItem } from "@nextui-org/react";
+import { Avatar, Card, CardBody, CardHeader, Select, SelectItem } from "@heroui/react";
 import { Gear } from "@/components/icons";
-import { Accordion, AccordionItem } from "@nextui-org/react";
+import { Accordion, AccordionItem } from "@heroui/react";
 
 const devices = [
   {
