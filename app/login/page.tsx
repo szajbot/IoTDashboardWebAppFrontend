@@ -46,21 +46,29 @@ export default function LoginPage() {
       data : data
     };
 
-    axios.request(config)
-      .then((response) => {
-        setIsLoading(false);
-        toggleIsLoggedIn(true);
-        console.log(response.data);
-        var access_token = JSON.stringify(response.data.access_token).replaceAll("\"","")
-        var refresh_token = JSON.stringify(response.data.refresh_token).replaceAll("\"","")
-        sessionStorage.setItem("access_token", access_token);
-        sessionStorage.setItem("refresh_token", refresh_token);
-        sessionStorage.setItem("username", userLogin.toString());
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        console.log(error);
-      });
+    setIsLoading(false);
+    toggleIsLoggedIn(true);
+    console.log('logged in !!!');
+    sessionStorage.setItem("access_token", "access_token");
+    sessionStorage.setItem("refresh_token", "refresh_token");
+    sessionStorage.setItem("username", "username");
+    window.location.reload();
+
+    // axios.request(config)
+    //   .then((response) => {
+    //     setIsLoading(false);
+    //     toggleIsLoggedIn(true);
+    //     console.log(response.data);
+    //     var access_token = JSON.stringify(response.data.access_token).replaceAll("\"","")
+    //     var refresh_token = JSON.stringify(response.data.refresh_token).replaceAll("\"","")
+    //     sessionStorage.setItem("access_token", access_token);
+    //     sessionStorage.setItem("refresh_token", refresh_token);
+    //     sessionStorage.setItem("username", userLogin.toString());
+    //   })
+    //   .catch((error) => {
+    //     setIsLoading(false);
+    //     console.log(error);
+    //   });
   }
 
   return (

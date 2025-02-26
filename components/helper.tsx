@@ -3,32 +3,28 @@
 import React from "react";
 import { Avatar, Link } from "@nextui-org/react";
 
-export const NavbarLoginComponent = () => {
-
-  const [accepted, setAccepted] = React.useState(false);
-
-  React.useEffect(() => {
-    if (window.sessionStorage.getItem('isLoggedIn')) {
-      setAccepted(true);
-    }
-  }, []);
-
-  if (accepted) {
+export default function NavbarLoginComponent(accepted) {
+  if (accepted === 1) {
     return (
       <div className="flex gap-5">
         <Avatar
           isBordered
           radius="full"
-          size="md"
+          size="sm"
           src="https://nextui.org/avatars/avatar-1.png"
         />
         <h3>You are logged</h3>
       </div>
     );
+  } else if (accepted === 2) {
+    return (
+      <Link className="text-myLightPurple text-xl" href="login">
+        Login
+      </Link>
+    );
   } else {
-    <Link className="text-myLightPurple text-xl" href="login">
-      Login
-    </Link>;
+    return (
+      <div></div>
+    );
   }
-
 };

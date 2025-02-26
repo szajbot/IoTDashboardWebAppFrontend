@@ -12,11 +12,21 @@ import {
   Link,
   NavbarBrand, Avatar
 } from "@nextui-org/react";
-import { NavbarLoginComponent } from "@/components/helper";
+import NavbarLoginComponent from "@/components/helper";
 
 const NextUINavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const menuItems = ["Dashboard", "Profile", "System", "Contact"];
+
+  const [accepted, setAccepted] = React.useState(0);
+
+  React.useEffect(() => {
+    if (window.sessionStorage.getItem("isLoggedIn")) {
+      setAccepted(1);
+    } else {
+      setAccepted(2);
+    }
+  }, []);
 
   return (
     <Navbar
@@ -38,8 +48,7 @@ const NextUINavbar = () => {
           <p className="font-bold text-inherit">ACME</p>
         </NavbarBrand>
         <NavbarItem className="lg:flex">
-          <NavbarLoginComponent>
-          </NavbarLoginComponent>
+          {NavbarLoginComponent(accepted)}
         </NavbarItem>
       </NavbarContent>
 
@@ -75,8 +84,7 @@ const NextUINavbar = () => {
       </NavbarContent>
       <NavbarContent className="hidden sm:flex" justify="center">
         <NavbarItem className="lg:flex">
-          <NavbarLoginComponent>
-          </NavbarLoginComponent>
+          {NavbarLoginComponent(accepted)}
         </NavbarItem>
       </NavbarContent>
     </Navbar>
