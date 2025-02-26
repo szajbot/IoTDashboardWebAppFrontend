@@ -2,7 +2,7 @@
 
 import { title } from "@/components/primitives";
 import { ResponsiveLine } from '@nivo/line'
-import {Avatar, Card, CardHeader, CardBody, CardFooter, Select, SelectSection, SelectItem} from "@nextui-org/react";
+import {Avatar, Card, CardHeader, CardBody, CardFooter, Select, SelectSection, SelectItem} from "@heroui/react";
 
 export const devices = [
   {key: "key1", label: "Czujnik temperatury"},

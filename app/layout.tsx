@@ -4,7 +4,7 @@ import "@/styles/globals.css";
 import { Inter } from "next/font/google";
 import React from "react";
 import clsx from "clsx";
-import { Link } from "@nextui-org/react";
+import { Link } from "@heroui/react";
 
 import { fontSans } from "@/config/fonts";
 import Providers from "@/app/providers";

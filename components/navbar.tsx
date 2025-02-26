@@ -11,7 +11,7 @@ import {
   NavbarMenuToggle,
   Link,
   NavbarBrand, Avatar
-} from "@nextui-org/react";
+} from "@heroui/react";
 import NavbarLoginComponent from "@/components/helper";
 
 const NextUINavbar = () => {

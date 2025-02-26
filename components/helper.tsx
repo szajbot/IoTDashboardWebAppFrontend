@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Avatar, Link } from "@nextui-org/react";
+import { Avatar, Link } from "@heroui/react";
 
 export default function NavbarLoginComponent(accepted) {
   if (accepted === 1) {
@@ -27,4 +27,5 @@ export default function NavbarLoginComponent(accepted) {
       <div></div>
     );
   }
+
 };
