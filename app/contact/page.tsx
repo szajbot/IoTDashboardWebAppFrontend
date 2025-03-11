@@ -1,41 +1,30 @@
 "use client";
-import { title } from "@/components/primitives";
 import { Button } from "@heroui/button";
 import React from "react";
 import { useNavbar } from "@/components/navbarContext";
-import axios from "axios";
-import qs from "qs";
+import { logout } from "./actions";
+import { clearSession, getAccessToken, getRefreshToken } from "@/components/userUtils";
 
 export default function ContactPage() {
 
   const { isLoggedIn, toggleIsLoggedIn } = useNavbar();
 
-  function logOut(e) {
-    console.log("logOut");
+  async function logOut(e) {
+    console.log("client side logging out");
 
-    let data = qs.stringify({
-      'refreshToken': sessionStorage.getItem("refresh_token")
-    });
+    let accessToken = getAccessToken()
+    let refreshToken = getRefreshToken()
 
-    let config = {
-      method: 'post',
-      maxBodyLength: Infinity,
-      url: 'http://localhost:8081/api/v1/auth/logout',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      data : data
-    };
+    let response = await logout(accessToken, refreshToken)
 
-    axios.request(config)
-      .then((response) => {
-        toggleIsLoggedIn(true);
-        console.log(response.data);
-        sessionStorage.clear();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (response.error === undefined) {
+      clearSession()
+    } else {
+      console.log(response.error)
+    }
+    toggleIsLoggedIn(false);
+    window.location.reload()
+
   }
 
   return (
@@ -45,11 +34,11 @@ export default function ContactPage() {
         className="max-w-xs mt-2 w-full"
         onPress={(e) => logOut(e)}
       >Log Out</Button>
-      <Button
-        color="secondary"
-        className="max-w-xs mt-2 w-full"
-        onPress={(e) => refreshToken(e)}
-      >Refresh</Button>
+      {/*<Button*/}
+      {/*  color="secondary"*/}
+      {/*  className="max-w-xs mt-2 w-full"*/}
+      {/*  onPress={(e) => refreshToken(e)}*/}
+      {/*>Refresh</Button>*/}
     </div>
   );
 }

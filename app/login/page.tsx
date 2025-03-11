@@ -5,15 +5,16 @@ import { EyeSlashFilledIcon } from "@heroui/shared-icons";
 import { EyeFilledIcon } from "@heroui/shared-icons";
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
-import axios from "axios";
-import qs from "qs";
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavbar } from "@/components/navbarContext";
+import { login } from "./actions";
+import { updateAccessToken, updateRefreshToken } from "@/components/userUtils";
+import { redirect } from "next/navigation";
 
 export default function LoginPage() {
   const [isVisible, setIsVisible] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
-
+  const [error, setError] = React.useState("");
   const [userPassword, setUserPassword] = React.useState([]);
   const [userLogin, setUserLogin] = React.useState([]);
 
@@ -28,52 +29,37 @@ export default function LoginPage() {
     setUserLogin(event.target.value);
   }
 
-  function sendLogIn(e) {
+  async function sendLogIn(e) {
     setIsLoading(true);
 
-    let data = qs.stringify({
+    const credentials = {
       'password': userPassword,
       'username': userLogin
-    });
+    }
 
-    let config = {
-      method: 'post',
-      maxBodyLength: Infinity,
-      url: 'http://localhost:8081/api/v1/auth/login',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      data : data
-    };
+    let result = await login(credentials)
 
+    if (result.error === undefined) {
+      updateAccessToken(result.access_token);
+      updateRefreshToken(result.refresh_token);
+      toggleIsLoggedIn(true);
+      window.location.reload();
+    } else {
+      console.log(error);
+      setError(error);
+    }
     setIsLoading(false);
-    toggleIsLoggedIn(true);
-    console.log('logged in !!!');
-    sessionStorage.setItem("access_token", "access_token");
-    sessionStorage.setItem("refresh_token", "refresh_token");
-    sessionStorage.setItem("username", "username");
-    window.location.reload();
 
-    // axios.request(config)
-    //   .then((response) => {
-    //     setIsLoading(false);
-    //     toggleIsLoggedIn(true);
-    //     console.log(response.data);
-    //     var access_token = JSON.stringify(response.data.access_token).replaceAll("\"","")
-    //     var refresh_token = JSON.stringify(response.data.refresh_token).replaceAll("\"","")
-    //     sessionStorage.setItem("access_token", access_token);
-    //     sessionStorage.setItem("refresh_token", refresh_token);
-    //     sessionStorage.setItem("username", userLogin.toString());
-    //   })
-    //   .catch((error) => {
-    //     setIsLoading(false);
-    //     console.log(error);
-    //   });
+
+    redirect('/dashboard');
   }
 
   return (
     <div>
       <h2 className={title()}>Please Log In</h2>
+
+      {error && <p className="text-red-500 mt-2">{error}</p>}
+
       <Input
         className="max-w-xs mt-6"
         onChange={handlePasswordChange}
