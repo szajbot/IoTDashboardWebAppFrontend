@@ -3,6 +3,9 @@
 import { title } from "@/components/primitives";
 import { ResponsiveLine } from '@nivo/line'
 import {Avatar, Card, CardHeader, CardBody, CardFooter, Select, SelectSection, SelectItem} from "@heroui/react";
+import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { Skeleton } from "@heroui/skeleton";
 
 export const devices = [
   {key: "key1", label: "Czujnik temperatury"},
@@ -213,61 +216,81 @@ const data = [
 ];
 
 export default function DashboardPage() {
+  const router = useRouter();
+  const [isLoadedPage, setIsLoadedPage] = React.useState(true);
+
+  const toggleLoadPage = () => {
+    setIsLoadedPage(!isLoadedPage);
+  };
+
+  useEffect(() => {
+    const isLoggedIn = JSON.parse(sessionStorage.getItem('isLoggedIn') || '{}');
+
+    console.log("Logging sth")
+    console.log(isLoggedIn);
+    if (isLoggedIn != true) {
+      router.push('/login');  // Redirect to login if session storage variable is not set to true
+    }
+    toggleLoadPage();
+  }, []);
+
   return (
     <div className="w-full">
-      <div className="md:flex w-full flex-nowrap gap-4">
-        <Card className="w-full">
-          <CardHeader className="justify-between">
-            <div className="flex gap-5">
-              <Avatar
-                isBordered
-                radius="full"
-                size="md"
-                src="https://nextui.org/avatars/avatar-1.png"
-              />
-              <div className="flex flex-col gap-1 items-start justify-center">
-                {/*<h4 className="text-small font-semibold leading-none text-default-600">Name of IoT device</h4>*/}
+      <Skeleton disableAnimation={true} className="bg-background" isLoaded={isLoadedPage}>
+        <h1 className={title()}>This is dashboard page</h1>
+        <div className="md:flex w-full flex-nowrap gap-4">
+          <Card className="w-full">
+            <CardHeader className="justify-between">
+              <div className="flex gap-5">
+                <Avatar
+                  isBordered
+                  radius="full"
+                  size="md"
+                  src="https://nextui.org/avatars/avatar-1.png"
+                />
+                <div className="flex flex-col gap-1 items-start justify-center">
+                  {/*<h4 className="text-small font-semibold leading-none text-default-600">Name of IoT device</h4>*/}
+                </div>
               </div>
-            </div>
-            <Select
-              className="max-w-xs"
-              items={devices}
-              color="secondary"
-              placeholder="Select IoT device">
-              {(devices) => <SelectItem>{devices.label}</SelectItem>}
-            </Select>
-          </CardHeader>
-          <CardBody>
-            <LineChart data={data}/>
-          </CardBody>
-        </Card>
-        <Card className="w-full">
-          <CardHeader className="justify-between">
-            <div className="flex gap-5">
-              <Avatar
-                isBordered
-                radius="full"
-                size="md"
-                src="https://nextui.org/avatars/avatar-1.png"
-              />
-              <div className="flex flex-col gap-1 items-start justify-center">
-                {/*<h4 className="text-small font-semibold leading-none text-default-600">Name of IoT device</h4>*/}
+              <Select
+                className="max-w-xs"
+                items={devices}
+                color="secondary"
+                placeholder="Select IoT device">
+                {(devices) => <SelectItem>{devices.label}</SelectItem>}
+              </Select>
+            </CardHeader>
+            <CardBody>
+              <LineChart data={data}/>
+            </CardBody>
+          </Card>
+          <Card className="w-full">
+            <CardHeader className="justify-between">
+              <div className="flex gap-5">
+                <Avatar
+                  isBordered
+                  radius="full"
+                  size="md"
+                  src="https://nextui.org/avatars/avatar-1.png"
+                />
+                <div className="flex flex-col gap-1 items-start justify-center">
+                  {/*<h4 className="text-small font-semibold leading-none text-default-600">Name of IoT device</h4>*/}
+                </div>
               </div>
-            </div>
-            <Select
-              className="max-w-xs"
-              items={devices}
-              color="secondary"
-              placeholder="Select IoT device">
-              {(devices) => <SelectItem>{devices.label}</SelectItem>}
-            </Select>
-          </CardHeader>
-          <CardBody>
-            <p>Some example text.</p>
-          </CardBody>
-        </Card>
-      </div>
-      <h1 className={title()}>This is dashboard page</h1>
+              <Select
+                className="max-w-xs"
+                items={devices}
+                color="secondary"
+                placeholder="Select IoT device">
+                {(devices) => <SelectItem>{devices.label}</SelectItem>}
+              </Select>
+            </CardHeader>
+            <CardBody>
+              <p>Some example text.</p>
+            </CardBody>
+          </Card>
+        </div>
+      </Skeleton>
     </div>
   );
 }

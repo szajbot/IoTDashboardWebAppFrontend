@@ -22,10 +22,8 @@ const NextUINavbar = () => {
 
   React.useEffect(() => {
     if (window.sessionStorage.getItem("isLoggedIn") === "true") {
-      console.log("Setting up 1")
       setAccepted(1);
     } else {
-      console.log("Setting up 2")
       setAccepted(2);
     }
   }, []);

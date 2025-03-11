@@ -10,6 +10,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        myBackground: "#000000",
         myDarkGrey: "#1a1a1a",
         myGrey: "#262626",
         myLightGrey: "#333333",

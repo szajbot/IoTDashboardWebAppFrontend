@@ -9,7 +9,7 @@ import React from "react";
 import { useNavbar } from "@/components/navbarContext";
 import { login } from "./actions";
 import { updateAccessToken, updateRefreshToken } from "@/components/userUtils";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [isVisible, setIsVisible] = React.useState(false);
@@ -20,6 +20,8 @@ export default function LoginPage() {
 
   const toggleVisibility = () => setIsVisible(!isVisible);
   const { isLoggedIn, toggleIsLoggedIn } = useNavbar();
+
+  const router = useRouter()
 
   function handlePasswordChange(event) {
     setUserPassword(event.target.value);
@@ -33,11 +35,11 @@ export default function LoginPage() {
     setIsLoading(true);
 
     const credentials = {
-      'password': userPassword,
-      'username': userLogin
-    }
+      "password": userPassword,
+      "username": userLogin
+    };
 
-    let result = await login(credentials)
+    let result = await login(credentials);
 
     if (result.error === undefined) {
       updateAccessToken(result.access_token);
@@ -50,8 +52,7 @@ export default function LoginPage() {
     }
     setIsLoading(false);
 
-
-    redirect('/dashboard');
+    router.push('/dashboard')
   }
 
   return (

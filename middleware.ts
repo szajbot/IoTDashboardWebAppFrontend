@@ -1,18 +1,13 @@
-import { NextResponse } from "next/server";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(request: NextRequest) {
-  // TODO check authentication
-  let isAuthenticated = true;
-
-  if (isAuthenticated) {
-    return NextResponse.next();
+  if (request.nextUrl.pathname === '/') {
+    return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
-  return NextResponse.redirect(new URL("/login", request.url));
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/dashboard', '/system', '/profile'], //Pages blocked by authentication
-  // "/:path*",
+  matcher: ['/'],
 };
