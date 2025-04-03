@@ -24,14 +24,19 @@ export async function login(credentials): Promise<any> {
 
   return axios.request(config)
     .then((response) => {
+      console.log("Response received:", response.data); // Log the response data
       return {
         access_token: response.data.access_token,
         refresh_token: response.data.refresh_token
       };
     })
     .catch((error) => {
+      console.error("Error occurred during request:", error); // Log the error details
+      if (error.response) {
+        console.error("Error response data:", error.response.data); // Log the error response data if available
+      }
       return {
-        error: ["Error occurred when parsing data"],
+        error: ["Error occurred when trying to log in"],
       };
     });
 

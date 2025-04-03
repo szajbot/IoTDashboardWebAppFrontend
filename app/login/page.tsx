@@ -40,19 +40,17 @@ export default function LoginPage() {
     };
 
     let result = await login(credentials);
+    console.log(result);
 
     if (result.error === undefined) {
       updateAccessToken(result.access_token);
       updateRefreshToken(result.refresh_token);
       toggleIsLoggedIn(true);
-      window.location.reload();
+      router.push('/dashboard')
     } else {
-      console.log(error);
-      setError(error);
+      setError(result.error[0]);
     }
     setIsLoading(false);
-
-    router.push('/dashboard')
   }
 
   return (

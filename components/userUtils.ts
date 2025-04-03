@@ -1,11 +1,11 @@
 'use client'
 
 export const updateAccessToken = (access_token) => {
-  sessionStorage.setItem('access_token', JSON.stringify(access_token));
+  sessionStorage.setItem('access_token', access_token);
 };
 
 export const updateRefreshToken = (refresh_token) => {
-  sessionStorage.setItem('refresh_token', JSON.stringify(refresh_token));
+  sessionStorage.setItem('refresh_token', refresh_token);
 };
 
 export const getAccessToken = () => {
