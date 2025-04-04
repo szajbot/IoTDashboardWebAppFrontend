@@ -19,9 +19,8 @@ export default function ProfilePage() {
       router.push('/login');  // Redirect to login if session storage variables are not set correctly
     } else {
       fetchData(accessToken)
-        .then(res => res.json())
         .then(data => {
-          setTextFromBackend(data); // Update the state with the fetched data
+          setTextFromBackend(data.response); // Update the state with the fetched data
           setIsLoadedPage(true); // Set the page as loaded
         })
         .catch(err => {

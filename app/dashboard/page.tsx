@@ -217,7 +217,7 @@ const data = [
 
 export default function DashboardPage() {
   const router = useRouter();
-  const [isLoadedPage, setIsLoadedPage] = React.useState(true);
+  const [isLoadedPage, setIsLoadedPage] = React.useState(false);
 
   const toggleLoadPage = () => {
     setIsLoadedPage(!isLoadedPage);

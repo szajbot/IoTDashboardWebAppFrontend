@@ -7,7 +7,7 @@ export async function fetchData(accessToken): Promise<any> {
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: 'http://127.0.0.1:80/api/v1/demo/hello', //example endpoint with isAuthenticated auth
+    url: 'http://192.168.1.32:80/api/v1/demo/hello', //example endpoint with isAuthenticated auth
     // headers: {
     //   // 'Authorization': 'Bearer ' + accessToken
     // },
